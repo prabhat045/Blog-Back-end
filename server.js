@@ -1,49 +1,22 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-
-const bcrypt = require("bcrypt-nodejs");
+const mongoose = require("mongoose");
 const cors = require("cors");
-const knex = require("knex");
-const register = require("./Controllers/register");
-const signin = require("./Controllers/signin");
-// const profile = require("./Controllers/profile");
-const write = require("./Controllers/write");
-const article = require("./Controllers/article");
 
-const db = knex({
-  client: "pg",
-  connection: {
-    host: "127.0.0.1",
-    user: "postgres",
-    password: "1234",
-    database: "blog",
-  },
-});
 const app = express();
+const PORT = process.env.PORT || 5000;
+
+app.use(express.json({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(bodyParser.json());
 
-// app.get("/", (req, res) => {
-//   res.send(database.users);
-// });
+app.use("/users", require("./routes/users"));
 
-app.post("/signin", (req, res) => {
-  signin.handleSignin(req, res, db, bcrypt);
-});
+mongoose.connect(
+  "mongodb+srv://prabhat:Newspaper@123@cluster0.gbiyl.mongodb.net/blog?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => console.log("Connected to DB")
+);
+mongoose.set("useFindAndModify", false);
+mongoose.set("useCreateIndex", true);
 
-app.post("/register", (req, res) => {
-  register.handleRegister(req, res, db, bcrypt);
-});
-
-app.post("/write", (req, res) => {
-  write.handleWrite(req, res, db);
-});
-app.get("/article", (req, res) => {
-  article.handleArticle(req, res, db);
-});
-
-// app.get("/profile/:id", (req, res) => {
-//   profile.handleProfileGet(req, res, db);
-// });
-
-app.listen(3000);
+app.listen(PORT, () => console.log(`Listening on Port ${PORT}`));
