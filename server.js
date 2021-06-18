@@ -3,16 +3,16 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use("/users", require("./routes/users"));
+app.use("/users/register", require("./routes/users"));
 
 mongoose.connect(
-  "mongodb+srv://prabhat:Newspaper@123@cluster0.gbiyl.mongodb.net/blog?retryWrites=true&w=majority",
+  "mongodb+srv://prabhat:prabhat@cluster0.gbiyl.mongodb.net/blog?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("Connected to DB")
 );
