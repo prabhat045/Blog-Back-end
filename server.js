@@ -9,7 +9,7 @@ app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use("/users/register", require("./routes/users"));
+app.use("/users", require("./routes/users"));
 
 mongoose.connect(
   "mongodb+srv://prabhat:prabhat@cluster0.gbiyl.mongodb.net/blog?retryWrites=true&w=majority",
