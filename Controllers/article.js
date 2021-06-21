@@ -17,4 +17,13 @@ const PostArticles = async (req, res) => {
   }
 };
 
-module.exports = { PostArticles };
+const getArticles = async (req, res) => {
+  try {
+    const response = await Article.find();
+    res.json(response);
+  } catch (err) {
+    res.json(err.message);
+  }
+};
+
+module.exports = { PostArticles, getArticles };
