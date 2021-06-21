@@ -5,7 +5,6 @@ const Article = new Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
   },
   description: {
     type: String,
@@ -15,10 +14,9 @@ const Article = new Schema({
     type: String,
     required: true,
   },
-  id: {
+  userId: {
     type: String,
     required: true,
-    unique: true,
   },
 });
 

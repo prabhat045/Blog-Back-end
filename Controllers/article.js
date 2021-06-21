@@ -5,12 +5,12 @@ const PostArticles = async (req, res) => {
     title: req.body.title,
     description: req.body.description,
     mainbody: req.body.mainbody,
-    id: req.body.id,
+    userId: req.body.userId,
   });
   try {
     article.save();
-    const { title, description, mainbody, id } = article;
-    const obj = { title, description, mainbody, id };
+    const { title, description, mainbody, userId } = article;
+    const obj = { title, description, mainbody, userId };
     res.json(obj);
   } catch (err) {
     console.log(err.message);
