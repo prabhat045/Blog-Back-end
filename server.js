@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use("/users", require("./routes/users"));
+app.use("/articles", require("./routes/articles"));
 
 mongoose.connect(
   "mongodb+srv://prabhat:prabhat@cluster0.gbiyl.mongodb.net/blog?retryWrites=true&w=majority",
