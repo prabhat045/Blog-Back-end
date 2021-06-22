@@ -28,7 +28,8 @@ const getArticles = async (req, res) => {
 
 const getMyarticles = async (req, res) => {
   try {
-    const response = await Article.findById(req.parms.userId);
+    const userId = req.query.userId;
+    const response = await Article.find({ userId: userId });
     res.json(response);
   } catch (err) {
     res.json(err.message);
