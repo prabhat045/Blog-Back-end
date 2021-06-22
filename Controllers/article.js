@@ -26,4 +26,13 @@ const getArticles = async (req, res) => {
   }
 };
 
-module.exports = { PostArticles, getArticles };
+const getMyarticles = async (req, res) => {
+  try {
+    const response = await Article.findById(req.parms.userId);
+    res.json(response);
+  } catch (err) {
+    res.json(err.message);
+  }
+};
+
+module.exports = { PostArticles, getArticles, getMyarticles };
